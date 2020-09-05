@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>spelling study buddy</title>
+  <link rel="stylesheet" href="./css/index.css" />
+</head>
+<body>
+  <div class="main">
+    <button id="start_bttn" onclick="startTest()">Start!</button>
+
+    <div id="testUI" style="display: none;">
+      <button onclick="replayWord()">🔊</button>
+      <input type="text" id="word" placeholder="Type the word here" />
+      <button onclick="checkValue()">➡️ Next Word</button>
+    </div>
+
+    <div id="answer_list" />
+    <div id="summary">
+      <p>You scored <span id="grade">90%</span></p>
+      <p>Words you missed: </p>
+    </div>
+  </div>
+
+  <script>
+    const words = ['charcoal', 'stinky', 'thing', 'poo']; // spelling words
+    const score = []; //score array
+    const answers = []; //answers array
+    let questionNumber = 0; // current question number
+    const synth = window.speechSynthesis; // global speech synth instance
+
+
+
+    startTest = () => {
+      const word = words[questionNumber];
+      const start_bttn = document.querySelector('#start_bttn');
+      start_bttn.style.display = 'none';
+
+      document.querySelector('#testUI').style.display = '';
+
+      sayWord(word);
+    }
+
+    nextQuestion = () => {
+      console.log(questionNumber, words.length)
+      if((questionNumber + 1) >= words.length){
+        // end of test
+        endTest()
+      } else {
+        questionNumber++;
+        sayWord(words[questionNumber]);
+      }
+    }
+
+    replayWord = () => {
+      sayWord(words[questionNumber])
+    }
+    
+
+
+
+    endTest = () => {
+      // test over.
+      console.log('you scored: ', answers);
+      document.querySelector('#testUI').style.display = 'none';
+      document.querySelector('#start_bttn').display = '';
+
+      checkScore();
+
+    }
+
+
+
+
+
+
+    sayWord = (activeWord) => {
+      const utterThis = new SpeechSynthesisUtterance(activeWord);
+      synth.speak(utterThis);
+    }
+
+
+    checkValue = (activeWord) => {
+      console.log('check value: ', activeWord)
+      let word = document.querySelector('#word').value;
+      const cleanWord = word.trim();
+
+      if(cleanWord === activeWord){
+        score.push(1);
+      } else {
+        score.push(0);
+      }
+
+      const answer_list = document.querySelector('#answer_list');
+
+      answers.push(cleanWord);
+      answer_list.innerHTML = answers
+      document.querySelector('#word').value = '';
+      nextQuestion();
+    }
+    
+    
+  </script>
+</body>
+</html>

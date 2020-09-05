@@ -1,0 +1,26 @@
+body {
+  font-size: 1em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+button {
+  font-size: 1em;
+    border-radius: 4px;
+    padding: 6px 12px;
+    background-color: #3f57ff;
+    color: white;
+    border: none;
+}
+input[type=text] {
+  font-size: 1em;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #d4d4d4;
+}
+.main {
+  width: 80%;
+  margin: 10% auto;
+  text-align: center;
+}
+#grade {
+  font-size: 1.5em;
+}
