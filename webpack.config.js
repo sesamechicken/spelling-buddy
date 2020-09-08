@@ -8,8 +8,78 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = () => {
+  console.log(isProd)
+  if(!isProd){ return {
+  mode: process.env.NODE_ENV,
+  entry: {
+    app: './src/index.js'
+  },
+  devtool: 'inline-source-map',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[chunkhash].js',
+    publicPath: '/'
+  },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    historyApiFallback: true,
+    port: 8000,
+    watchContentBase: true
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css'
+    }),
+    new HtmlWebpackPlugin({
+      template: './pub/index.html'
+    }),
+  ],
+  module: {
+    rules: [{
+        test: /\.m?js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: [
+              '@babel/plugin-proposal-class-properties',
+              '@babel/plugin-transform-runtime',
+              '@babel/plugin-proposal-optional-chaining'
+            ]
+          }
+        }
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            // options: {
+            //   modules: true,
+            // },
+          },
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
+        ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          'file-loader',
+        ],
+      },
+    ]
+  }}}
   return {
     mode: process.env.NODE_ENV,
     entry: {
@@ -24,7 +94,6 @@ module.exports = () => {
     devServer: {
       contentBase: path.resolve(__dirname, 'dist'),
       historyApiFallback: true,
-      compress: true,
       port: 8000,
       watchContentBase: true
     },
@@ -79,9 +148,10 @@ module.exports = () => {
         },
       ]
     },
+
     optimization: {
-      runtimeChunk: 'single',
-      splitChunks: {
+        runtimeChunk: 'single',
+        splitChunks: {
         chunks: 'all',
         cacheGroups: {
           styles: {
@@ -111,6 +181,6 @@ module.exports = () => {
           }),
           new OptimizeCSSAssetsPlugin({})
         ]
-    }
-  };
+      }
+  }
 };

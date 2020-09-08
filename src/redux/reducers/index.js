@@ -1,21 +1,29 @@
 const initialState = {
   dataURL: null,
-  words: null
+  words: ['doesn\'t', 'cannot', 'winner', 'thanks', 'butterfly'],
+  currentWord: 0,
+  answers: [],
+  loading: false,
+  complete: false
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'GLOBAL_MESSAGE':
+    case 'LOADING':
       return {
-        message: action.msg,
-        className: action.className,
-        id: action.id
+        ...state,
+        loading: true
+      }
+    case 'NEXT_QUESTION':
+      return {
+        ...state,
+        loading: false,
+        currentWord: state.currentWord + 1,
+        answers: [...state.answers, action.answer]
       };
-    case 'CLEAR_GLOBAL_MESSAGE':
+    case 'CALCULATE_SCORE':
       return {
-        message: null,
-        type: null,
-        id: null
+        state
       };
     default:
       return state;
