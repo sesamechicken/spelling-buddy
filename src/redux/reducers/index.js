@@ -22,6 +22,7 @@ const rootReducer = (state = initialState, action) => {
         answers: [...state.answers, action.answer]
       };
     case 'CALCULATE_SCORE':
+      console.log('test is over')
       return {
         state
       };

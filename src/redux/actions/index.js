@@ -15,11 +15,17 @@ const nextQuestion = (answer) => (dispatch, getState) => {
   });
 
   // This is where we check for the test to be over with getState.words length and an extra answer
-
-  dispatch({
-    type: 'NEXT_QUESTION',
-    answer
-  })
+  const { answers, words } = getState();
+  if(answers.length === words.length){
+    dispatch({
+      type: 'CALCULATE_SCORE'
+    });
+  } else {
+    dispatch({
+      type: 'NEXT_QUESTION',
+      answer
+    });
+  }
 };
 
 
