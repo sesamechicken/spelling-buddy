@@ -1,6 +1,6 @@
 const initialState = {
   dataURL: null,
-  words: ['doesn\'t', 'cannot', 'winner', 'thanks', 'butterfly'],
+  words: localStorage.getItem('words')?.split(',') || [],
   currentWord: 0,
   answers: [],
   loading: false,
@@ -15,11 +15,11 @@ const rootReducer = (state = initialState, action) => {
         loading: true
       }
     case 'LOAD_WORDS':
-      console.log(action)
+      localStorage.setItem('words', action.words);
       return {
         ...state,
         loading: false,
-        words: [...state.words, action.words]
+        words: [...action.words]
       }
     case 'NEXT_QUESTION':
       return {

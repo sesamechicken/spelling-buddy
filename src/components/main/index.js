@@ -1,9 +1,9 @@
 import React from 'react';
-import { Card, Icon, Button, Input } from 'semantic-ui-react'
+import { Card, Icon, Button, Input, Form, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import actions from '../../redux/actions'
 import { speakWord } from '../../utils';
-
+import './main.css';
 class Main extends React.Component {
   constructor(props){
     super();
@@ -39,14 +39,21 @@ class Main extends React.Component {
 
     return(
       <React.Fragment>
-        <Card>
-          <div>
-          <Button primary icon onClick={() => this.handlePlayBttn()}><Icon name='play' /></Button>
-            <div><Input placeholder='Type your answer here' value={this.state.answer} onChange={(e) => this.handleInputChange(e)} /> <Button onClick={() => this.handleButtonClick()} secondary>Next</Button></div>
+          { !complete && <div className='main-container'>
+            <Form>
+              <Form.Group>
+                <Form.Button size='huge' primary icon onClick={() => this.handlePlayBttn()}><Icon name='play' /></Form.Button> 
+                <Form.Input size='huge' placeholder='Type your answer here' value={this.state.answer} onChange={(e) => this.handleInputChange(e)} /> 
+                <Form.Button size='huge' onClick={() => this.handleButtonClick()} positive icon labelPosition='right'>Next <Icon name='arrow alternate circle right' /></Form.Button>
+              </Form.Group>
+              </Form>
           </div>
-        </Card>
+          }
+
         { complete && 
-          <div>Test is over! Calculating your score...</div>
+          <div className='score-container'>
+            <Icon name='flag checkered' /> Test is over! Calculating your score...
+          </div>
         }
       </React.Fragment>
     )
