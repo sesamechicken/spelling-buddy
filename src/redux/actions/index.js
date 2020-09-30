@@ -1,11 +1,11 @@
-const loadWords = (dataURL, words) => (dispatch, getState) => {
+const loadWords = (words) => (dispatch, getState) => {
   dispatch({
     type: 'LOADING'
   });
 
   dispatch({
     type: 'LOAD_WORDS',
-    dataURL,
+    words,
   });
 };
 
@@ -15,10 +15,11 @@ const nextQuestion = (answer) => (dispatch, getState) => {
   });
 
   // This is where we check for the test to be over with getState.words length and an extra answer
-  const { answers, words } = getState();
-  if(answers.length === words.length){
+  const { currentWord, words } = getState();
+  if((currentWord + 1) === words.length){
     dispatch({
-      type: 'CALCULATE_SCORE'
+      type: 'CALCULATE_SCORE',
+      answer
     });
   } else {
     dispatch({

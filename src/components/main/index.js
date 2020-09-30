@@ -29,25 +29,42 @@ class Main extends React.Component {
     this.setState({answer: ''});
   }
 
+  calculateScore = () => {
+    const { words, answers } = this.props;
+
+  }
+
   render(){
+    const { complete } = this.props;
+
     return(
-      <Card>
-        <div>
-        <Button primary icon onClick={() => this.handlePlayBttn()}><Icon name='play' /></Button>
-          <div><Input placeholder='Type your answer here' value={this.state.answer} onChange={(e) => this.handleInputChange(e)} /> <Button onClick={() => this.handleButtonClick()} secondary>Next</Button></div>
-        </div>
-      </Card>
+      <React.Fragment>
+        <Card>
+          <div>
+          <Button primary icon onClick={() => this.handlePlayBttn()}><Icon name='play' /></Button>
+            <div><Input placeholder='Type your answer here' value={this.state.answer} onChange={(e) => this.handleInputChange(e)} /> <Button onClick={() => this.handleButtonClick()} secondary>Next</Button></div>
+          </div>
+        </Card>
+        { complete && 
+          <div>Test is over! Calculating your score...</div>
+        }
+      </React.Fragment>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   const currentWord = state.currentWord || 0;
+  const answers = state.answers || [];
+  const words = state.words || [];
   const word = state.words[state.currentWord];
-
+  const complete = state.complete || false;
   return {
     word,
-    currentWord
+    words,
+    answers,
+    currentWord,
+    complete
   };
 };
 

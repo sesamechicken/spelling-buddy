@@ -14,6 +14,13 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         loading: true
       }
+    case 'LOAD_WORDS':
+      console.log(action)
+      return {
+        ...state,
+        loading: false,
+        words: [...state.words, action.words]
+      }
     case 'NEXT_QUESTION':
       return {
         ...state,
@@ -22,9 +29,10 @@ const rootReducer = (state = initialState, action) => {
         answers: [...state.answers, action.answer]
       };
     case 'CALCULATE_SCORE':
-      console.log('test is over')
       return {
-        state
+        ...state,
+        complete: true,
+        answers: [...state.answers, action.answer]
       };
     default:
       return state;
