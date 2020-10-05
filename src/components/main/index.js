@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Icon, Button, Input, Form, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux';
+import difference from 'lodash.difference';
 import actions from '../../redux/actions'
 import { speakWord } from '../../utils';
 import './main.css';
@@ -31,6 +32,21 @@ class Main extends React.Component {
 
   calculateScore = () => {
     const { words, answers } = this.props;
+    const wordsMissed = difference(answers, words);
+    let score;
+
+    if(wordsMissed.length === 0){
+      score = 100;
+      return (<div>You got a 100%! Great job!</div>)
+    } else {
+    return(
+      <div>
+        You missed {wordsMissed.length} words.
+        {wordsMissed.map((word) => word + ', ')}
+      </div>
+    )
+    }
+    console.log(difference(answers, words));
 
   }
 
@@ -52,7 +68,8 @@ class Main extends React.Component {
 
         { complete && 
           <div className='score-container'>
-            <Icon name='flag checkered' /> Test is over! Calculating your score...
+            <Icon name='flag checkered' /> Test is over!
+            {this.calculateScore()}
           </div>
         }
       </React.Fragment>
