@@ -1,21 +1,40 @@
 import React from 'react';
 import { Card, Icon, Button, Input, Form, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import difference from 'lodash.difference';
 import actions from '../../redux/actions'
-import { speakWord } from '../../utils';
+import { speakWord, calculateScore } from '../../utils';
 import './main.css';
 class Main extends React.Component {
   constructor(props){
     super();
     this.state = {
-      answer: ''
+      answer: '',
+      error: null
     }
+  }
+  componentDidMount(){
+    this.handlePlayBttn();
+  }
+  
+  showError = (msg) => {
+    this.setState({error: msg});
   }
 
   handleInputChange = (e) => {
     const value = e.target.value;
-    this.setState({answer: value});
+    if(e.target.value === ''){
+      this.showError('You must answer before moving on!');
+    }
+    else {
+      this.setState({error: null});
+      e.persist();
+      if(e.keyCode === 13){
+        this.setState({answer: value}, () => {
+          e.target.value = '';
+          this.handleButtonClick();
+        });
+      }
+    }
   }
 
   handlePlayBttn = () => {
@@ -25,29 +44,12 @@ class Main extends React.Component {
   }
 
   handleButtonClick = () => { 
-    console.log(this.state.answer)
     this.props.nextQuestion(this.state.answer)
-    this.setState({answer: ''});
-  }
-
-  calculateScore = () => {
-    const { words, answers } = this.props;
-    const wordsMissed = difference(answers, words);
-    let score;
-
-    if(wordsMissed.length === 0){
-      score = 100;
-      return (<div>You got a 100%! Great job!</div>)
-    } else {
-    return(
-      <div>
-        You missed {wordsMissed.length} words.
-        {wordsMissed.map((word) => word + ', ')}
-      </div>
-    )
-    }
-    console.log(difference(answers, words));
-
+    this.setState({answer: ''}, () => {
+      if(this.props.words.length != this.props.answers.length){
+        this.handlePlayBttn();
+      }
+    });
   }
 
   render(){
@@ -55,21 +57,17 @@ class Main extends React.Component {
 
     return(
       <React.Fragment>
-          { !complete && <div className='main-container'>
-            <Form>
-              <Form.Group>
-                <Form.Button size='huge' primary icon onClick={() => this.handlePlayBttn()}><Icon name='play' /></Form.Button> 
-                <Form.Input size='huge' placeholder='Type your answer here' value={this.state.answer} onChange={(e) => this.handleInputChange(e)} /> 
-                <Form.Button size='huge' onClick={() => this.handleButtonClick()} positive icon labelPosition='right'>Next <Icon name='arrow alternate circle right' /></Form.Button>
-              </Form.Group>
-              </Form>
+        { this.state.error && <div className='error'>{this.state.error}</div> }
+        { !complete && <div className='main-container'>
+              <Button size='huge' primary icon onClick={() => this.handlePlayBttn()}><Icon name='play' /></Button> 
+              <Input size='huge' placeholder='Type your answer here' onKeyUp={(e) => this.handleInputChange(e)} />
+              <Button size='huge' onClick={() => this.handleButtonClick()} positive icon labelPosition='right'>Next <Icon name='arrow alternate circle right' /></Button>
           </div>
-          }
-
+        }
         { complete && 
           <div className='score-container'>
             <Icon name='flag checkered' /> Test is over!
-            {this.calculateScore()}
+            {calculateScore(this.props)}
           </div>
         }
       </React.Fragment>

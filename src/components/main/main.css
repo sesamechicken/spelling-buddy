@@ -1,8 +1,30 @@
 .main-container {
   width: 90%;
   margin: 10% auto;
+  text-align: center;
 }
 .score-container {
   text-align: center;
   margin: 10% auto;
+}
+.miss {
+  background-color: #ffcaca;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+.correct {
+  background-color: rgb(173, 233, 173);
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+.score {
+  font-size: 18px;
+}
+.error {
+  background-color: #ffcaca;
+  font-size: 1.5em;
+  padding: 16px;
+  border-radius: 6px;
+  text-align: center;
+  margin: 1em;
 }
