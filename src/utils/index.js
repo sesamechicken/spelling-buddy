@@ -1,5 +1,4 @@
 import React from 'react';
-import difference from 'lodash.difference';
 
 
 /**

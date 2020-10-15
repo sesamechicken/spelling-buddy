@@ -75,7 +75,7 @@ module.exports = () => {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
-          'file-loader',
+          'url-loader',
         ],
       },
     ]
@@ -143,12 +143,11 @@ module.exports = () => {
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/,
           use: [
-            'file-loader',
+            'url-loader',
           ],
         },
       ]
     },
-
     optimization: {
         runtimeChunk: 'single',
         splitChunks: {
@@ -162,7 +161,7 @@ module.exports = () => {
           },
           vendor: {
             chunks: 'initial',
-            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            test: /[\\/]node_modules[\\/](react|react-dom|semantic-ui-react|semantic-ui-css)[\\/]/,
             name: 'vendor',
             enforce: true
           }

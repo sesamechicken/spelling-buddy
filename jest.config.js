@@ -15,6 +15,6 @@ module.exports = {
     "jsx"
   ],
   transformIgnorePatterns: [
-    "/node_modules/(?!kroger-|react-kuic|@kroger|react-jss).*/"
+    "/node_modules/(?!|react-jss).*/"
   ]
 };
