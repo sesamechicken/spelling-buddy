@@ -21,7 +21,7 @@ module.exports = () => {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[chunkhash].js',
-    publicPath: '/'
+    publicPath: '.'
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
@@ -89,7 +89,7 @@ module.exports = () => {
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[chunkhash].js',
-      publicPath: '/'
+      publicPath: '.'
     },
     devServer: {
       contentBase: path.resolve(__dirname, 'dist'),
