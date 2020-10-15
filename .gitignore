@@ -50,4 +50,4 @@ sketch
 !.vscode/extensions.json
 *.code-workspace
 
-dist
+/dist
