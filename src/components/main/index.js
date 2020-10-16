@@ -1,16 +1,16 @@
 import React from 'react';
-import { Card, Icon, Button, Input, Form, Label } from 'semantic-ui-react'
+import { Icon, Button, Input } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import actions from '../../redux/actions'
+import actions from '../../redux/actions';
 import { speakWord, calculateScore } from '../../utils';
 import './main.css';
 class Main extends React.Component {
-  constructor(props){
+  constructor(){
     super();
     this.state = {
       answer: '',
       error: null
-    }
+    };
   }
   componentDidMount(){
     this.handlePlayBttn();
@@ -44,12 +44,13 @@ class Main extends React.Component {
   }
 
   handleButtonClick = () => { 
-    this.props.nextQuestion(this.state.answer)
+    
     this.setState({answer: ''}, () => {
       if(this.props.words.length != this.props.answers.length){
         this.handlePlayBttn();
       }
     });
+    this.props.nextQuestion(this.state.answer);
   }
 
   render(){
@@ -61,7 +62,7 @@ class Main extends React.Component {
         { !complete && <div className='main-container'>
               <Button size='huge' primary icon onClick={() => this.handlePlayBttn()}><Icon name='play' /></Button> 
               <Input size='huge' placeholder='Type your answer here' onKeyUp={(e) => this.handleInputChange(e)} />
-              <Button size='huge' onClick={() => this.handleButtonClick()} positive icon labelPosition='right'>Next <Icon name='arrow alternate circle right' /></Button>
+              <Button size='huge' onClick={() => this.handleButtonClick()} positive labelPosition='right'>Next <Icon name='arrow alternate circle right' /></Button>
           </div>
         }
         { complete && 
@@ -71,7 +72,7 @@ class Main extends React.Component {
           </div>
         }
       </React.Fragment>
-    )
+    );
   }
 }
 
@@ -90,7 +91,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     nextQuestion: (answer) => dispatch(actions.nextQuestion(answer))
   };
