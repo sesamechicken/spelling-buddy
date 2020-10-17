@@ -1,5 +1,4 @@
 import React from 'react';
-import { FileLoader } from './components/fileLoader';
 import WordLoader from './components/wordLoader';
 import { Header } from './components/header';
 import Main from './components/main';
@@ -14,6 +13,6 @@ export default class App extends React.Component {
         <WordLoader />
         <Main />
       </div>
-    )
+    );
   }
 }

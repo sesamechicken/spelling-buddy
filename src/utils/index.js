@@ -17,7 +17,7 @@ export const speakWord = (activeWord) => {
   msg.text = activeWord;
   msg.lang = 'en-US';
   speechSynthesis.speak(msg);
-}
+};
 
 
 
@@ -45,5 +45,5 @@ export const calculateScore = (props) => {
         )
       }
     </div>
-  )
-}
+  );
+};

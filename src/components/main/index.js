@@ -48,7 +48,7 @@ class Main extends React.Component {
     speakWord(word);
   }
 
-  handleButtonClick = (e = null) => { 
+  handleButtonClick = () => { 
     this.props.nextQuestion(this.state.answer);
     
     this.setState({answer: ''}, () => {

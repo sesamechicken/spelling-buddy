@@ -1,4 +1,4 @@
-const loadWords = (words) => (dispatch, getState) => {
+const loadWords = (words) => (dispatch) => {
   dispatch({
     type: 'LOADING'
   });
@@ -33,4 +33,4 @@ const nextQuestion = (answer) => (dispatch, getState) => {
 export default {
   nextQuestion,
   loadWords
-}
+};

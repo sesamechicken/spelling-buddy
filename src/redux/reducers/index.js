@@ -13,14 +13,14 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true
-      }
+      };
     case 'LOAD_WORDS':
       localStorage.setItem('words', action.words);
       return {
         ...state,
         loading: false,
         words: [...action.words]
-      }
+      };
     case 'NEXT_QUESTION':
       return {
         ...state,
