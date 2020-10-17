@@ -11,7 +11,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = () => {
-  console.log(isProd)
+  console.log(isProd);
   if(!isProd){ return {
   mode: process.env.NODE_ENV,
   entry: {
@@ -21,10 +21,10 @@ module.exports = () => {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[chunkhash].js',
-    publicPath: '.'
+    publicPath: '/'
   },
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname,'dist'),
     historyApiFallback: true,
     port: 8000,
     watchContentBase: true
@@ -59,10 +59,7 @@ module.exports = () => {
         use: [
           'style-loader',
           {
-            loader: 'css-loader',
-            // options: {
-            //   modules: true,
-            // },
+            loader: 'css-loader'
           },
         ],
       },

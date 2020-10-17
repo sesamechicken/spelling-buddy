@@ -4,7 +4,7 @@ const loadWords = (words) => (dispatch, getState) => {
   });
 
   dispatch({
-    type: 'LOAD_WORDS',
+    type: 'LOAD_WORDS_OK',
     words,
   });
 };
