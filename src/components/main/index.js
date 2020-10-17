@@ -11,6 +11,8 @@ class Main extends React.Component {
       answer: '',
       error: null
     };
+    // Set the text input as a ref
+    this.input = React.createRef();
   }
   componentDidMount(){
     this.handlePlayBttn();
@@ -22,6 +24,9 @@ class Main extends React.Component {
 
   handleInputChange = (e) => {
     const value = e.target.value;
+    
+    this.setState({answer: value});
+
     if(e.target.value === ''){
       this.showError('You must answer before moving on!');
     }
@@ -31,7 +36,7 @@ class Main extends React.Component {
       if(e.keyCode === 13){
         this.setState({answer: value}, () => {
           e.target.value = '';
-          this.handleButtonClick();
+          this.handleButtonClick(e);
         });
       }
     }
@@ -43,14 +48,17 @@ class Main extends React.Component {
     speakWord(word);
   }
 
-  handleButtonClick = () => { 
+  handleButtonClick = (e = null) => { 
+    this.props.nextQuestion(this.state.answer);
     
     this.setState({answer: ''}, () => {
       if(this.props.words.length != this.props.answers.length){
+        // Play the next word
         this.handlePlayBttn();
+        // Reset the input to an empty string
+        this.input.current.inputRef.current.value = '';
       }
     });
-    this.props.nextQuestion(this.state.answer);
   }
 
   render(){
@@ -59,10 +67,11 @@ class Main extends React.Component {
     return(
       <React.Fragment>
         { this.state.error && <div className='error'>{this.state.error}</div> }
-        { !complete && <div className='main-container'>
-              <Button size='huge' primary icon onClick={() => this.handlePlayBttn()}><Icon name='play' /></Button> 
-              <Input size='huge' placeholder='Type your answer here' onKeyUp={(e) => this.handleInputChange(e)} />
-              <Button size='huge' onClick={() => this.handleButtonClick()} positive labelPosition='right'>Next <Icon name='arrow alternate circle right' /></Button>
+        { !complete && 
+          <div className='main-container'>
+              <Button size='large' primary icon onClick={() => this.handlePlayBttn()}><Icon name='play' /></Button> 
+              <Input autoComplete='false' ref={this.input} size='large' placeholder='Type your answer here' onKeyUp={(e) => this.handleInputChange(e)} />
+              <Button size='large' icon onClick={() => this.handleButtonClick()} positive><Icon name='arrow alternate circle right' /></Button>
           </div>
         }
         { complete && 

@@ -1,11 +1,12 @@
 .main-container {
   width: 90%;
-  margin: 10% auto;
+  margin: 1em;
   text-align: center;
 }
 .score-container {
   text-align: center;
   margin: 10% auto;
+  font-size: 1.6em;
 }
 .miss {
   background-color: #ffcaca;
