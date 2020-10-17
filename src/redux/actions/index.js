@@ -7,6 +7,11 @@ const loadWords = (words) => (dispatch) => {
     type: 'LOAD_WORDS',
     words,
   });
+
+  dispatch({
+    type: 'LOAD_WORDS_OK',
+    words,
+  });
 };
 
 const nextQuestion = (answer) => (dispatch, getState) => {

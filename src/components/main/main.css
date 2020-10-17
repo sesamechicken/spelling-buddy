@@ -19,7 +19,8 @@
   border-radius: 4px;
 }
 .score {
-  font-size: 18px;
+  font-size: 2em;
+  color: rgb(250, 0, 104);
 }
 .error {
   background-color: #ffcaca;

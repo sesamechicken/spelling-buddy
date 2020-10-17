@@ -62,11 +62,16 @@ class Main extends React.Component {
   }
 
   render(){
-    const { complete } = this.props;
+    const { complete, words_loaded } = this.props;
 
     return(
       <React.Fragment>
         { this.state.error && <div className='error'>{this.state.error}</div> }
+        { 
+        words_loaded && 
+          // Could be a modal
+          <div>Words loaded ok</div>
+        }
         { !complete && 
           <div className='main-container'>
               <Button size='large' primary icon onClick={() => this.handlePlayBttn()}><Icon name='play' /></Button> 
@@ -91,9 +96,11 @@ const mapStateToProps = (state) => {
   const words = state.words || [];
   const word = state.words[state.currentWord];
   const complete = state.complete || false;
+  const words_loaded = state.words_loaded;
   return {
     word,
     words,
+    words_loaded,
     answers,
     currentWord,
     complete

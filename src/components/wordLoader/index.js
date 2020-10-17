@@ -52,7 +52,7 @@ class WordLoader extends React.Component {
       <div>
         <Form>
           <TextArea className={ visible ? '' : 'hidden'} value={words} onChange={(e, data) => this.handleOnChange(e, data)} style={{ minHeight: 100 }} placeholder='Type the words here to test'></TextArea>
-          <div className='text-center'>
+          <div className='bttns text-center'>
             <Button onClick={() => this.handleClick()}><Icon name='upload' /> Load</Button>
             <Button onClick={() => this.clearSavedWords()}><Icon name='trash' /> Clear</Button>
             <Button onClick={() => this.hideWordBank()}><Icon name='hide' /> Hide</Button>

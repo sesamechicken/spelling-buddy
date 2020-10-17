@@ -4,7 +4,8 @@ const initialState = {
   currentWord: 0,
   answers: [],
   loading: false,
-  complete: false
+  complete: false,
+  words_loaded: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -21,6 +22,12 @@ const rootReducer = (state = initialState, action) => {
         loading: false,
         words: [...action.words]
       };
+      case 'LOAD_WORDS_OK':
+        return {
+          ...state,
+          words_loaded: true,
+          loading: false,
+        };
     case 'NEXT_QUESTION':
       return {
         ...state,

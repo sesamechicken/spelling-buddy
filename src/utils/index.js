@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 /**
  * Method to speak the word via web speech API
  * @param {string} activeWord The word to speak
@@ -19,14 +18,13 @@ export const speakWord = (activeWord) => {
   speechSynthesis.speak(msg);
 };
 
-
-
 /**
  * Method to calculate score from correct and incorrect answers
- * @param {object} props Props from the main caller
+ * @param {Object} props - payload for method args
+ * @param {string} props.words - words from state words
+ * @param {string} props.answers - answers from state words
  */
-export const calculateScore = (props) => {
-  const { words, answers } = props;
+export const calculateScore = ({words, answers}) => {
   let score;
   let wrongAnswerIndex = [];
 
@@ -34,14 +32,17 @@ export const calculateScore = (props) => {
   for(let i = 0; i < words.length; i++){
     words[i] === answers[i] ? 'true' : wrongAnswerIndex.push(i);
   }
+  // Calculated as: 
+  // words - wrong answers = right answers
+  // right answeres / ttl number of words * 100 = percentage
   score = Math.round(((words.length - wrongAnswerIndex.length) / words.length) * 100);
   return(
     <div>
-      <p>You scored: <span className='score'>{score}</span>%</p>
+      <p>You scored: <span className='score'>{score}%</span></p>
       <p>You missed {wrongAnswerIndex.length} word{wrongAnswerIndex.length === 1 ? '' : 's'}.</p>
       {
         wrongAnswerIndex.map((index) =>
-            <p key={index}><span className='miss'>{answers[index]}</span> <em>should be</em> <span className='correct'>{words[index]}</span></p>
+          <p key={index}><span className='miss'>{answers[index]}</span> <em>should be</em> <span className='correct'>{words[index]}</span></p>
         )
       }
     </div>
