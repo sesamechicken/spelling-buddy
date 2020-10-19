@@ -21,6 +21,7 @@
 .score {
   font-size: 2em;
   color: rgb(250, 0, 104);
+  font-weight: bold;
 }
 .error {
   background-color: #ffcaca;

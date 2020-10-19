@@ -23,7 +23,7 @@ class Main extends React.Component {
   }
 
   handleInputChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.toLowerCase();
     
     this.setState({answer: value});
 

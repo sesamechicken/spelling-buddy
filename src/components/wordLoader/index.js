@@ -9,7 +9,7 @@ class WordLoader extends React.Component {
     super(props);
     this.state = {
       words: '',
-      visible: true
+      visible: false
     };
   }
 
@@ -26,8 +26,9 @@ class WordLoader extends React.Component {
     words = words.replace(/ /g, '');
     words = words.replace(/\n/g, ',');
     words = words.split(',');
+    words = words.filter(word => word != '');
 
-    // lowercase all the words (answers will be lowered, too)
+    // Lowercase all the words (answers will be lowered, too)
     const cleanWords = words.map((word) => word.toLowerCase());
 
     this.props.loadWords(cleanWords);
@@ -55,7 +56,15 @@ class WordLoader extends React.Component {
           <div className='bttns text-center'>
             <Button onClick={() => this.handleClick()}><Icon name='upload' /> Load</Button>
             <Button onClick={() => this.clearSavedWords()}><Icon name='trash' /> Clear</Button>
-            <Button onClick={() => this.hideWordBank()}><Icon name='hide' /> Hide</Button>
+            <Button onClick={() => this.hideWordBank()}>
+              {
+                visible && 
+                <span><Icon name='hide' />Hide</span>
+              ||
+                !visible &&
+                <span><Icon name='eye' />Show</span>
+              }
+            </Button>
           </div>
         </Form>
       </div>
