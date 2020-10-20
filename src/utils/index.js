@@ -6,14 +6,10 @@ import React from 'react';
  */
 export const speakWord = (activeWord) => {
   const msg = new SpeechSynthesisUtterance();
-  const voices = window.speechSynthesis.getVoices();
-
-  msg.voice = voices[0]; // Note: some voices don't support altering params
   msg.volume = 1; // 0 to 1
   msg.rate = .75; // 0.1 to 10
   msg.pitch = 1; //0 to 2
   msg.text = activeWord;
-  msg.lang = 'en-US';
   speechSynthesis.speak(msg);
 };
 
