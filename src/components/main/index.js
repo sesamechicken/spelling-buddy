@@ -75,7 +75,7 @@ class Main extends React.Component {
         { !complete && 
           <div className='main-container'>
               <Button size='large' primary icon onClick={() => this.handlePlayBttn()}><Icon name='play' /></Button> 
-              <Input autoComplete='false' ref={this.input} size='large' placeholder='Type your answer here' onKeyUp={(e) => this.handleInputChange(e)} />
+              <Input autoCorrect='off' autoCapitalize='off' spellcheck='false' autoComplete='false' ref={this.input} size='large' placeholder='Type your answer here' onKeyUp={(e) => this.handleInputChange(e)} />
               <Button size='large' icon onClick={() => this.handleButtonClick()} positive><Icon name='arrow alternate circle right' /></Button>
           </div>
         }
