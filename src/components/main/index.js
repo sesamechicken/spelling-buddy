@@ -49,7 +49,7 @@ class Main extends React.Component {
   }
 
   handleButtonClick = () => { 
-    this.props.nextQuestion(this.state.answer);
+    this.props.nextQuestion(this.state.answer.trim());
     
     this.setState({answer: ''}, () => {
       if(this.props.words.length != this.props.answers.length){
