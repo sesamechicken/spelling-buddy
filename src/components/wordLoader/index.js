@@ -16,9 +16,11 @@ class WordLoader extends React.Component {
   componentDidMount(){
     this.setState({words: this.props.words});
   }
+
   handleOnChange = (e, data) => {
     this.setState({words: data.value});
   }
+
   handleClick = () => {
     let words = this.state.words;
     
@@ -33,7 +35,6 @@ class WordLoader extends React.Component {
 
     this.props.loadWords(cleanWords);
   }
-
 
   clearSavedWords = () => {
     localStorage.clear();
@@ -52,7 +53,7 @@ class WordLoader extends React.Component {
     return(
       <div>
         <Form>
-          <TextArea className={ visible ? '' : 'hidden'} value={words} onChange={(e, data) => this.handleOnChange(e, data)} style={{ minHeight: 100 }} placeholder='Type the words here to test'></TextArea>
+          <TextArea className={ visible ? '' : 'hidden'} defaultValue={words} onChange={(e, data) => this.handleOnChange(e, data)} style={{ minHeight: 100 }} placeholder='Type the words here to test'></TextArea>
           <div className='bttns text-center'>
             <Button onClick={() => this.handleClick()}><Icon name='upload' /> Load</Button>
             <Button onClick={() => this.clearSavedWords()}><Icon name='trash' /> Clear</Button>
@@ -72,8 +73,7 @@ class WordLoader extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const words = state.words || '';
+const mapStateToProps = ({words = ''}) => {
   return {
     words
   };

@@ -11,8 +11,6 @@ class Main extends React.Component {
       answer: '',
       error: null
     };
-    // Set the text input as a ref
-    this.input = React.createRef();
   }
   componentDidMount(){
     this.handlePlayBttn();
@@ -50,13 +48,10 @@ class Main extends React.Component {
 
   handleButtonClick = () => { 
     this.props.nextQuestion(this.state.answer.trim());
-    
     this.setState({answer: ''}, () => {
       if(this.props.words.length != this.props.answers.length){
         // Play the next word
         this.handlePlayBttn();
-        // Reset the input to an empty string
-        this.input.current.inputRef.current.value = '';
       }
     });
   }
@@ -75,7 +70,7 @@ class Main extends React.Component {
         { !complete && 
           <div className='main-container'>
               <Button size='large' primary icon onClick={() => this.handlePlayBttn()}><Icon name='play' /></Button> 
-              <Input autoCorrect='off' autoCapitalize='off' spellcheck='false' autoComplete='false' ref={this.input} size='large' placeholder='Type your answer here' onKeyUp={(e) => this.handleInputChange(e)} />
+              <Input autoCorrect='off' autoCapitalize='off' spellCheck='false' autoComplete='false' ref={this.input} size='large' placeholder='Type your answer here' onKeyUp={(e) => this.handleInputChange(e)} />
               <Button size='large' icon onClick={() => this.handleButtonClick()} positive><Icon name='arrow alternate circle right' /></Button>
           </div>
         }
@@ -90,15 +85,9 @@ class Main extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const currentWord = state.currentWord || 0;
-  const answers = state.answers || [];
-  const words = state.words || [];
-  const word = state.words[state.currentWord];
-  const complete = state.complete || false;
-  const words_loaded = state.words_loaded;
+const mapStateToProps = ({currentWord = 0, answers = [], words = [], complete = false, words_loaded}) => {
   return {
-    word,
+    word: words[currentWord],
     words,
     words_loaded,
     answers,

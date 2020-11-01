@@ -1,7 +1,7 @@
 module.exports = {
   moduleNameMapper: {
-    "\\.(css|sass|svg|png)$": "<rootDir>/__mocks__/styleMock.js",
-  },
+    "\\.(css|sass|svg|png)$": "identity-obj-proxy",
+  },  
   setupFiles: ['./jest.setup.js'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   transform: {
