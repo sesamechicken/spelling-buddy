@@ -24,18 +24,16 @@ export class FileLoader extends React.Component {
       });
   }
 
-  render(){
+  render() {
     return (
-      <React.Fragment>
-        <p>Please enter/paste the location of the spelling word list</p> 
-        <div className="flex-row">
-          <div className="flex"><Input fluid /> <Button onClick={() => this.loadWords()} primary>Load words</Button></div>
-        </div>
-      </React.Fragment>
+    <React.Fragment>
+      <p>Please enter/paste the location of the spelling word list</p> 
+      <div className="flex-row">
+        <div className="flex"><Input fluid /> <Button onClick={() => this.loadWords()} primary>Load words</Button></div>
+      </div>
+    </React.Fragment>
     );
   }
 }
-
-
 
 // export default Connect(mapStateToProps)(FileLoader);
