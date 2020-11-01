@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "lint": "eslint \"src/**/*.js\"",
+    "test": "jest",
     "build": "NODE_ENV=production webpack",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
@@ -49,6 +50,7 @@
     "file-loader": "^6.0.0",
     "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.0.4",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^25.3.0",
     "jest-environment-jsdom": "^25.3.0",
     "mini-css-extract-plugin": "^0.9.0",
