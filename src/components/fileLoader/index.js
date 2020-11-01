@@ -24,7 +24,7 @@ export class FileLoader extends React.Component {
       });
   }
 
-  render(){
+  render() {
     return (
       <React.Fragment>
         <p>Please enter/paste the location of the spelling word list</p> 
@@ -35,7 +35,5 @@ export class FileLoader extends React.Component {
     );
   }
 }
-
-
 
 // export default Connect(mapStateToProps)(FileLoader);

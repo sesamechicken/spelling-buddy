@@ -5,7 +5,8 @@ module.exports = {
   setupFiles: ['./jest.setup.js'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   transform: {
-    "\\.js$": "<rootDir>/node_modules/babel-jest"
+    "\\.js$": "<rootDir>/node_modules/babel-jest",
+    "\\.jsx$": "<rootDir>/node_modules/babel-jest"
   },
   moduleDirectories: [
     "node_modules"
