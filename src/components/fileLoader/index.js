@@ -10,18 +10,19 @@ export class FileLoader extends React.Component {
     };
   }
 
-  handleOnChange = (e) => {
-    console.log(e.target.value);
-  }
+  // handleOnChange = (e) => {
+  //  console.log(e.target.value);
+  // }
 
   loadWords = () => {
-    const wordLocation = this.state.fileURL;
-      axios.get().then((data) => {
-        console.log('this allegedly came from: ', wordLocation);
-        console.log(data);
-      }).catch((e) => {
-        console.error(e);
-      });
+    // const wordLocation = this.state.fileURL;
+    return axios.get().then((data) => {
+      return data;
+    })
+    .catch((e) => {
+      // catch it and deal with it
+      throw e;
+    });
   }
 
   render() {

@@ -20,5 +20,5 @@ describe("renders an expected Fragment", () => {
         expect( container.containsMatchingElement(
             <Input />
         )).toBe(true);
-    })
+    });
 });
