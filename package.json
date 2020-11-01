@@ -12,8 +12,7 @@
     "test": "jest",
     "build": "NODE_ENV=production webpack",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "test": "jest"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "axios": "^0.19.2",
