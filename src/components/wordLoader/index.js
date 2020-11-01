@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Form, TextArea, Button, Icon } from 'semantic-ui-react';
 import actions from '../../redux/actions';
 import './wordLoader.css';
-class WordLoader extends React.Component {
+export class WordLoader extends React.Component {
   
   constructor(props){
     super(props);
