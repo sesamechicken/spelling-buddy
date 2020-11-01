@@ -19,6 +19,6 @@ describe("renders an expected Fragment", () => {
     test("Fragment has an input for the file / filename", () => {
         expect( container.containsMatchingElement(
             <Input />
-        ));
+        )).toBe(true);
     })
 });
