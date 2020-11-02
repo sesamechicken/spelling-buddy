@@ -51,3 +51,4 @@ sketch
 *.code-workspace
 
 /dist
+/coverage
