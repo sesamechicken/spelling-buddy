@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, TextArea, Button, Icon } from 'semantic-ui-react';
+import { Form, Icon } from 'semantic-ui-react';
 import actions from '../../redux/actions';
 import './wordLoader.css';
-class WordLoader extends React.Component {
+export class DumbWordLoader extends React.Component {
   
   constructor(props){
     super(props);
@@ -53,11 +53,11 @@ class WordLoader extends React.Component {
     return(
       <div>
         <Form>
-          <TextArea className={ visible ? '' : 'hidden'} defaultValue={words} onChange={(e, data) => this.handleOnChange(e, data)} style={{ minHeight: 100 }} placeholder='Type the words here to test'></TextArea>
+          <textarea className={ visible ? '' : 'hidden'} defaultValue={words} onChange={(e, data) => this.handleOnChange(e, data)} style={{ minHeight: 100 }} placeholder='Type the words here to test'></textarea>
           <div className='bttns text-center'>
-            <Button onClick={() => this.handleClick()}><Icon name='upload' /> Load</Button>
-            <Button onClick={() => this.clearSavedWords()}><Icon name='trash' /> Clear</Button>
-            <Button onClick={() => this.hideWordBank()}>
+            <button className='bttn' onClick={() => this.handleClick()}><Icon name='upload' /> Load</button>
+            <button className='bttn' onClick={() => this.clearSavedWords()}><Icon name='trash' /> Clear</button>
+            <button className='bttn' onClick={() => this.hideWordBank()}>
               {
                 visible && 
                 <span><Icon name='hide' />Hide</span>
@@ -65,7 +65,7 @@ class WordLoader extends React.Component {
                 !visible &&
                 <span><Icon name='eye' />Show</span>
               }
-            </Button>
+            </button>
           </div>
         </Form>
       </div>
@@ -85,4 +85,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(WordLoader);
+export default connect(mapStateToProps, mapDispatchToProps)(DumbWordLoader);
