@@ -17,8 +17,10 @@ export class DumbWordLoader extends React.Component {
     this.setState({words: this.props.words});
   }
 
-  handleOnChange = (e, data) => {
-    this.setState({words: data.value});
+  handleOnChange = (e) => {
+    const data = e.target.value;
+
+    this.setState({words: data});
   }
 
   handleClick = () => {
@@ -53,11 +55,11 @@ export class DumbWordLoader extends React.Component {
     return(
       <div>
         <Form>
-          <textarea className={ visible ? '' : 'hidden'} defaultValue={words} onChange={(e, data) => this.handleOnChange(e, data)} style={{ minHeight: 100 }} placeholder='Type the words here to test'></textarea>
+          <textarea className={ visible ? '' : 'hidden'} defaultValue={words} onChange={(e) => this.handleOnChange(e)} style={{ minHeight: 100 }} placeholder='Type the words here to test'></textarea>
           <div className='bttns text-center'>
-            <button className='bttn' onClick={() => this.handleClick()}><Icon name='upload' /> Load</button>
-            <button className='bttn' onClick={() => this.clearSavedWords()}><Icon name='trash' /> Clear</button>
-            <button className='bttn' onClick={() => this.hideWordBank()}>
+            <button data-qa='load_bttn' className='bttn' onClick={() => this.handleClick()}><Icon name='upload' /> Load</button>
+            <button data-qa='clear_bttn' className='bttn' onClick={() => this.clearSavedWords()}><Icon name='trash' /> Clear</button>
+            <button data-qa='hide_bttn' className='bttn' onClick={() => this.hideWordBank()}>
               {
                 visible && 
                 <span><Icon name='hide' />Hide</span>
