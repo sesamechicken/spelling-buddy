@@ -28,3 +28,14 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: unit test
         run: yarn test --coverage
+      - name: Coveralls GitHub Action
+      # You may pin to the exact commit or the version.
+      # uses: coverallsapp/github-action@8cbef1dea373ebce56de0a14c68d6267baa10b44
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          # 
+          github-token: $COVERALLS_TOKEN
+          # Path to lcov file
+          path-to-lcov: ./coverage/lcov.info
+          # Job flag name, e.g. "Unit", "Functional", or "Integration". Will be shown in the Coveralls UI.
+          flag-name: unit
