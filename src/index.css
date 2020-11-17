@@ -1,4 +1,7 @@
 /* Global CSS */
+body {
+  font-family: 'Open Sans', sans-serif;
+}
 .flex {
   flex: 1;
 }

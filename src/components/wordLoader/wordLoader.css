@@ -7,9 +7,13 @@
 .bttns {
   margin-top: 12px;
 }
-.bttn {
+button {
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid #969696;
   margin: .5em;
+}
+input {
+  padding: 8px;
+  font-family: 'Open Sans', sans-serif;
 }

@@ -34,7 +34,6 @@ const nextQuestion = (answer) => (dispatch, getState) => {
   }
 };
 
-
 export default {
   nextQuestion,
   loadWords

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Icon, Button, Input } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import actions from '../../redux/actions';
 import { speakWord, calculateScore } from '../../utils';
@@ -69,14 +68,14 @@ class Main extends React.Component {
         }
         { !complete && 
           <div className='main-container'>
-              <Button size='large' primary icon onClick={() => this.handlePlayBttn()}><Icon name='play' /></Button> 
-              <Input autoCorrect='off' autoCapitalize='off' spellCheck='false' autoComplete='false' ref={this.input} size='large' placeholder='Type your answer here' onKeyUp={(e) => this.handleInputChange(e)} />
-              <Button size='large' icon onClick={() => this.handleButtonClick()} positive><Icon name='arrow alternate circle right' /></Button>
+              <button onClick={() => this.handlePlayBttn()}>Play</button> 
+              <input autoCorrect='off' autoCapitalize='off' spellCheck='false' autoComplete='false' ref={this.input} size='large' placeholder='Type your answer here' onKeyUp={(e) => this.handleInputChange(e)} />
+              <button onClick={() => this.handleButtonClick()}>Next</button>
           </div>
         }
         { complete && 
           <div className='score-container'>
-            <Icon name='flag checkered' /> Test is over!
+            Test is over!
             {calculateScore(this.props)}
           </div>
         }
