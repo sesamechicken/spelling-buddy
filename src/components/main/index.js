@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import actions from '../../redux/actions';
 import { speakWord, calculateScore } from '../../utils';
 import './main.css';
-class Main extends React.Component {
+export class DumbMain extends React.Component {
   constructor(){
     super();
     this.state = {
@@ -21,7 +21,6 @@ class Main extends React.Component {
 
   handleInputChange = (e) => {
     const value = e.target.value.toLowerCase();
-    
     this.setState({answer: value});
 
     if(e.target.value === ''){
@@ -101,4 +100,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(DumbMain);
