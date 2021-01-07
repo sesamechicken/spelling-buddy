@@ -1,5 +1,11 @@
 import { calculateScore } from './';
 
+describe('speakWord method', () => {
+  it('should speak the word its given', () => {
+
+  });
+});
+
 describe('calculateScore method', () => {
   it('should show a score of 100% if all entries are correct', () => {
     const data = {
